@@ -8,14 +8,13 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 
-
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
 pytest-cov = "^6.2.1"
 blue = "^0.9.1"
 isort = "^6.0.1"
 taskipy = "^1.14.1"
-
+click = "8.1.7"
 
 [tool.poetry.group.doc.dependencies]
 mkdocs-material = "^9.6.18"
@@ -25,3 +24,18 @@ mkdocstrings-python = "^1.18.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = "--doctest-modules"
+
+[tool.isort]
+profile = "black"
+line_lenght = 79
+
+[tool.taskipy.tasks]
+lint = "blue --check --diff . && isort --check --diff ."
+docs = "mkdocs serve"
+pre_test = "task lint"
+test = "pytest -s -x --cov=notas_musicais -vv"
+post_test = "coverage html"
