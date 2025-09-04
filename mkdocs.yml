@@ -1,0 +1,17 @@
+site_name: Notas Musicais
+
+repo_url: https://github.com/edsonjrsx/notas-musicais
+repo_name: edsonjrsx/notas-musicais
+edit_uri: edit/main/docs/
+
+theme: 
+  name: material
+  language: pt-BR
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+
+markdown_extensions: 
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css
