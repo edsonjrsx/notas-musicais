@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "notas-musicais"
 version = "0.1.0"
-description = ""
+description = "Notas musicais é um CLI para ajudar na formação de escalas, acordes e campos harmônicos"
 authors = ["Edson Carvalho <junior.edson@unifesp.br>"]
 readme = "README.md"
 
@@ -11,10 +11,9 @@ python = "^3.11"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
 pytest-cov = "^6.2.1"
-blue = "^0.9.1"
-isort = "^6.0.1"
 taskipy = "^1.14.1"
 click = "8.1.7"
+ruff = "^0.14.2"
 
 [tool.poetry.group.doc.dependencies]
 mkdocs-material = "^9.6.18"
@@ -29,12 +28,18 @@ build-backend = "poetry.core.masonry.api"
 pythonpath = "."
 addopts = "--doctest-modules"
 
-[tool.isort]
-profile = "black"
-line_lenght = 79
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+ignore = ['PLR2004']
+
+[tool.ruff.format]
+quote-style = 'single'
 
 [tool.taskipy.tasks]
-lint = "blue --check --diff . && isort --check --diff ."
+lint = "ruff check . --unsafe-fixes && ruff check --diff ."
 docs = "mkdocs serve"
 pre_test = "task lint"
 test = "pytest -s -x --cov=notas_musicais -vv"
