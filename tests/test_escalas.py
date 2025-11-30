@@ -37,23 +37,34 @@ def test_deve_retornar_erro_quando_a_escala_nao_existe():
     assert error.value.args[0] == mensagem_erro
 
 @pytest.mark.parametrize(
-    ('tonica', 'esperado'), [
-        ('C',  ['C', 'D', 'E', 'F', 'G', 'A', 'B']),
-        ('C#', ['C#', 'D#', 'F', 'F#', 'G#', 'A#', 'C']),
-        ('D',  ['D', 'E', 'F#', 'G', 'A', 'B', 'C#']),
-        ('D#', ['D#', 'F', 'G', 'G#', 'A#', 'C', 'D']),
-        ('E',  ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#']),
-        ('F',  ['F', 'G', 'A', 'A#', 'C', 'D', 'E']),
-        ('F#', ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'F']),
-        ('G',  ['G', 'A', 'B', 'C', 'D', 'E', 'F#']),
-        ('G#', ['G#', 'A#', 'C', 'C#', 'D#', 'F', 'G']),
-        ('A',  ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']),
-        ('A#', ['A#', 'C', 'D', 'D#', 'F', 'G', 'A']),
-        ('B',  ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#']),
+    ('tonica', 'tonalidade', 'esperado'), [
+        ('C',  'maior', ['C', 'D', 'E', 'F', 'G', 'A', 'B']),
+        ('C#', 'maior', ['C#', 'D#', 'F', 'F#', 'G#', 'A#', 'C']),
+        ('D',  'maior', ['D', 'E', 'F#', 'G', 'A', 'B', 'C#']),
+        ('D#', 'maior', ['D#', 'F', 'G', 'G#', 'A#', 'C', 'D']),
+        ('E',  'maior', ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#']),
+        ('F',  'maior', ['F', 'G', 'A', 'A#', 'C', 'D', 'E']),
+        ('F#', 'maior', ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'F']),
+        ('G',  'maior', ['G', 'A', 'B', 'C', 'D', 'E', 'F#']),
+        ('G#', 'maior', ['G#', 'A#', 'C', 'C#', 'D#', 'F', 'G']),
+        ('A',  'maior', ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']),
+        ('A#', 'maior', ['A#', 'C', 'D', 'D#', 'F', 'G', 'A']),
+        ('B',  'maior', ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#']),
+        ('C',  'menor', ['C', 'D', 'D#', 'F', 'G', 'G#', 'A#']),
+        ('C#', 'menor', ['C#', 'D#', 'E', 'F#', 'G#', 'A', 'B']),
+        ('D',  'menor', ['D', 'E', 'F', 'G', 'A', 'A#', 'C']),
+        ('D#', 'menor', ['D#', 'F', 'F#', 'G#', 'A#', 'B', 'C#']),
+        ('E',  'menor', ['E', 'F#', 'G', 'A', 'B', 'C', 'D']),
+        ('F',  'menor', ['F', 'G', 'G#', 'A#', 'C', 'C#', 'D#']),
+        ('F#', 'menor', ['F#', 'G#', 'A', 'B', 'C#', 'D', 'E']),
+        ('G',  'menor', ['G', 'A', 'A#', 'C', 'D', 'D#', 'F']),
+        ('G#', 'menor', ['G#', 'A#', 'B', 'C#', 'D#', 'E', 'F#']),
+        ('A',  'menor', ['A', 'B', 'C', 'D', 'E', 'F', 'G']),
+        ('A#', 'menor', ['A#', 'C', 'C#', 'D#', 'F', 'F#', 'G#']),
+        ('B',  'menor', ['B', 'C#', 'D', 'E', 'F#', 'G', 'A']),
     ]
 )
-def test_deve_retornar_escala_correta(tonica, esperado):
-    tonalidade = 'maior'
+def test_deve_retornar_escala_correta(tonica, tonalidade, esperado):
     resultado = escala(tonica, tonalidade)
     assert resultado['notas'] == esperado
 
