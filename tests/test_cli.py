@@ -29,7 +29,17 @@ def test_acorde_cli_deve_conter_as_notas_na_resposta_de_do(nota):
     result = runner.invoke(app, ['acorde'])
     assert nota in result.stdout
 
-@pytest.mark.parametrize('nota', ['I', 'III', 'V'])
-def test_acorde_cli_deve_conter_os_graus_respectivos(nota):
+@pytest.mark.parametrize('grau', ['I', 'III', 'V'])
+def test_acorde_cli_deve_conter_os_graus_respectivos(grau):
     result = runner.invoke(app, ['acorde', 'F'])
-    assert nota in result.stdout
+    assert grau in result.stdout
+
+@pytest.mark.parametrize('cifra', ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bº'])
+def test_campo_harmonico_cli_deve_conter_os_acordes_na_resposta_de_do(cifra):
+    result = runner.invoke(app, ['campo-harmonico',  'C'])
+    assert cifra in result.stdout
+
+@pytest.mark.parametrize('grau', ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'viiº'])
+def test_campo_harmonico_cli_deve_conter_os_graus_respectivos(grau):
+    result = runner.invoke(app, ['campo-harmonico', 'F'])
+    assert grau in result.stdout
