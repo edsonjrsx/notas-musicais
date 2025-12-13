@@ -2,9 +2,11 @@
 
 # Notas Musicais
 
-Notas musicais é um  CLI para ajudar na formação de escalas musicais e acordes.
+Notas musicais é um  CLI para ajudar na formação de escalas musicais, acordes, campos harmônicos.
 
-Temos dois comandos principais: 'escala' e 'acorde'.
+Todo a aplicação é baseada em um comando chamado `notas-musicais`. Esse comando é o ponto de entrada para o CLI e será usado para chamar os subcomandos.
+
+Temos três subcomandos principais: 'escala', 'acorde' e 'campo-harmonico'.
 
 ## Como usar?
 
@@ -63,6 +65,7 @@ Resultando em:
 │ D │ E  │ F   │ G  │ A │ A# │ C   │
 └───┴────┴─────┴────┴───┴────┴─────┘
 ```
+
 ## Acordes
 
 Uso básico do comando acorde:
@@ -94,6 +97,63 @@ poetry run notas-musicais acorde C+
 
 Até o momento você pode usar acordes maiores (Ex: C), menores (Ex: Cm), aumentados (Ex: C+), diminutos (Ex: Cº), menores diminutos (Ex: Cmº);
 
+## Campo Harmônico
+
+Uso básico do comando campo-harmonico:
+
+```bash
+poetry run notas-musicais campo-harmonico [TONICA] [TONALIDADE]
+```
+
+Retornando os graus e as notas correspondentes a esse campo harmônico:
+
+```bash
+-> poetry run notas-musicais campo-harmonico
+┏━━━┳━━━━┳━━━━━┳━━━━┳━━━┳━━━━┳━━━━━━┓
+┃ I ┃ ii ┃ iii ┃ IV ┃ V ┃ vi ┃ viiº ┃
+┡━━━╇━━━━╇━━━━━╇━━━━╇━━━╇━━━━╇━━━━━━┩
+│ C │ Dm │ Em  │ F  │ G │ Am │ Bº   │
+└───┴────┴─────┴────┴───┴────┴──────┘
+```
+
+Por padrão os parâmetros utilizados são a tônica 'C' e o campo harmônico 'maior'.
+
+### Alteração da tônica no campo harmônico
+
+Você pode alterar a tônica do campo harmônico passando o primeiro parâmetro, . Por exemplo:
+
+```bash
+poetry run notas-musicais campo-harmonico D
+```
+
+Resultando em:
+
+```bash
+┏━━━┳━━━━┳━━━━━┳━━━━┳━━━┳━━━━┳━━━━━━┓
+┃ I ┃ ii ┃ iii ┃ IV ┃ V ┃ vi ┃ viiº ┃
+┡━━━╇━━━━╇━━━━━╇━━━━╇━━━╇━━━━╇━━━━━━┩
+│ D │ Em │ F#m │ G  │ A │ Bm │ C#º  │
+└───┴────┴─────┴────┴───┴────┴──────┘
+```
+
+### Alteração na tonalidade do campo harmônico
+
+Você pode alterar a tonalidade do campo harmônico passando o segundo parâmetro. Por exemplo:
+
+```bash
+poetry run notas-musicais campo-harmonico A menor
+```
+
+Resultando em:
+
+```bash
+┏━━━━┳━━━━━┳━━━━━┳━━━━┳━━━━┳━━━━┳━━━━━┓
+┃ i  ┃ iiº ┃ III ┃ iv ┃ v  ┃ VI ┃ VII ┃
+┡━━━━╇━━━━━╇━━━━━╇━━━━╇━━━━╇━━━━╇━━━━━┩
+│ Am │ Bº  │ C   │ Dm │ Em │ F  │ G   │
+└────┴─────┴─────┴────┴────┴────┴─────┘
+```
+
 ## Mais informações sobre o CLI
 
 Para descobrir outras opções, você pode usar a flag '--help':
@@ -105,10 +165,17 @@ poetry run escalas --help
 Resultando em:
 
 ```bash
-Usage: escalas [OPTIONS] [TONICA] [TONALIDADE]                                                                                                                          
-                                                                                                                                                                         
-╭─ Arguments ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│   tonica          [TONICA]      Tônica da Escala [default: c]                                                                                                         │
-│   tonalidade      [TONALIDADE]  Tonalidade da Escala [default: maior]                                                                                                 │
-╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+ Usage: notas-musicais [OPTIONS] COMMAND [ARGS]...                                                                                                                                      
+
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --install-completion          Install completion for the current shell.                                                                                                              │
+│ --show-completion             Show completion for the current shell, to copy it or customize the installation.                                                                       │
+│ --help                        Show this message and exit.                                                                                                                            │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ escala                                                                                                                                                                               │
+│ acorde                                                                                                                                                                               │
+│ campo-harmonico                                                                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
 ```
