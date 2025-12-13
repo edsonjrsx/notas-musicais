@@ -23,7 +23,7 @@ def triade(nota, tonalidade):
 
     return [notas_da_escala[grau] for grau in graus]
 
-def acorde(cifra: str) -> dict[list[str], list[str]]:
+def acorde(cifra: str) -> dict[str, list[str]]:
     """
     Gera as notas de um acorde a partir de uma cifra.
 
